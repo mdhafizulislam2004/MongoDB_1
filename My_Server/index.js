@@ -1,0 +1,24 @@
+const express = require('express');
+const app = express();
+const cors=require('cors')
+const port = process.env.PORT || 3000;
+
+app.use(cors())
+
+app.get('/', (req, res) => {
+  res.send('MongoDB Start');
+});
+
+const users = [
+  { id: "2", name: "Habib", email: "hafizul2004habib@gmail.com" },
+  { id: "3", name: "Habib", email: "hafizul2004hafizul@gmail.com" },
+  { id: "4", name: "Hafizul", email: "hafizul2004official@gmail.com" },
+]
+
+app.get('/user', (req, res) => {
+  res.send(users);
+});
+
+app.listen(port, () => {
+  console.log(`MongoDB Data Base ${port}`);
+});
