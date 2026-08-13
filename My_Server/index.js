@@ -4,6 +4,7 @@ const cors=require('cors')
 const port = process.env.PORT || 3000;
 
 app.use(cors())
+app.use(express.json())
 
 app.get('/', (req, res) => {
   res.send('MongoDB Start');
@@ -18,6 +19,10 @@ const users = [
 app.get('/user', (req, res) => {
   res.send(users);
 });
+
+app.post("/user",(req,res)=>{
+  console.log("Add User Data",req.body);
+})
 
 app.listen(port, () => {
   console.log(`MongoDB Data Base ${port}`);
