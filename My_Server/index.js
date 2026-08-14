@@ -11,9 +11,9 @@ app.get('/', (req, res) => {
 });
 
 const users = [
-  { id: "2", name: "Habib", email: "hafizul2004habib@gmail.com" },
-  { id: "3", name: "Habib", email: "hafizul2004hafizul@gmail.com" },
-  { id: "4", name: "Hafizul", email: "hafizul2004official@gmail.com" },
+  { id: "1", name: "Habib", email: "hafizul2004habib@gmail.com" },
+  { id: "2", name: "Habib", email: "hafizul2004hafizul@gmail.com" },
+  { id: "3", name: "Hafizul", email: "hafizul2004official@gmail.com" },
 ]
 
 app.get('/user', (req, res) => {
@@ -22,6 +22,10 @@ app.get('/user', (req, res) => {
 
 app.post("/user",(req,res)=>{
   console.log("Add User Data",req.body);
+  const newUser=req.body
+  newUser.id=users.length+1
+  users.push(newUser)
+  res.send(newUser)
 })
 
 app.listen(port, () => {
