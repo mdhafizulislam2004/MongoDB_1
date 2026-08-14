@@ -1,9 +1,9 @@
 import { use, useState } from "react";
 
 const Users = ({ Data }) => {
-    const User = use(Data)
-    const [users,setUsers]=useState(User)
-    console.log(User);
+    const UserData = use(Data)
+    const [users, setUsers] = useState(UserData)
+    console.log(UserData);
 
     const submitHendaler = (e) => {
         e.preventDefault()
@@ -23,25 +23,27 @@ const Users = ({ Data }) => {
             .then(res => res.json())
             .then(data => {
                 console.log("After Post", data);
-
+                const newUSer = [...users, data]
+                setUsers(newUSer)
             })
         e.target.reset()
     }
 
     return (
         <div>
-            Length:{User.length}
-            {
-                /* {
-                    User.map(UserData=><p key={UserData.id}>Name:{UserData.name}<br/> Emil:{UserData.email}</p>)
-                } */
-            }
+            {/* Length:{UserData.length} */}
+
+
+
 
             <form onSubmit={submitHendaler}>
                 <input type="text" name="name" /> <br />
                 <input type="email" name="email" /> <br />
                 <button>Add User</button>
             </form>
+            {
+                UserData.map(UserData => <p key={UserData.id}>Name:{UserData.name}<br /> Emil:{UserData.email}</p>)
+            }
         </div>
     );
 };
